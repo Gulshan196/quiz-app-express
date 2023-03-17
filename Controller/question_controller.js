@@ -3,7 +3,7 @@ class Question {
   constructor() {}
   static addQuestions = async (req, res) => {
     const { question, options, correct_ans , difficulty } = req.body;
-    if (!question || !options || !correct_ans || difficulty) {
+    if (!question || !options || !correct_ans || !difficulty) {
       res.send("please provide all details of the question");
     }
     try {
