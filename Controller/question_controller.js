@@ -29,6 +29,20 @@ class Question {
       res.send(err);
     }
   };
-}
+
+  static getRandomQuestion = async (req,res) =>{
+    const {difficulty} = req.params;
+    await questionModel.aggregate([
+      { $match: { difficulty: difficulty } },
+      { $sample: { size: 1 } }
+    ]).toArray(function(err, result) {
+      if (err) throw err;
+      
+      // Print the random question to the console
+      console.log(result[0]);
+      res.send(result[0]);
+    })}
+  
+  }
 
 module.exports = Question;
