@@ -31,7 +31,7 @@ class Question {
   };
 
   static getRandomQuestion = async (req,res) =>{
-    const {difficulty} = req.body;
+    const difficulty = +req.params['d'];
  // define the difficulty level
 
 
@@ -42,10 +42,15 @@ const pipeline = [
 ];
 
 // execute the pipeline
+try{
 let data = await questionModel.aggregate(pipeline
 ).exec();
   
 res.send(data);
+}
+catch(err) {
+  console.log(err);
+}
   }
 }
 
