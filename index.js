@@ -3,12 +3,9 @@ const app = express();
 const db = require("./Database/database");
 const bodyParser = require("body-parser");
 
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const cors = require("cors");
 
-dotenv.config({
-  path:"./data/config.env"
-});
 
 
 app.use(cors({
@@ -26,6 +23,6 @@ app.get("/", (req, res) => {
 
 app.use("/ques", router);
 
-app.listen(process.env.PORT, () => {
-  console.log(`app running on port ${process.env.PORT}`);
+app.listen(process.env.PORT || 8000, () => {
+  console.log(`app running on port 8000`);
 });
