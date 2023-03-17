@@ -31,18 +31,22 @@ class Question {
   };
 
   static getRandomQuestion = async (req,res) =>{
-    const {difficulty} = req.params;
-    await questionModel.aggregate([
-      { $match: { difficulty: difficulty } },
-      { $sample: { size: 1 } }
-    ]).toArray(function(err, result) {
-      if (err) throw err;
-      
-      // Print the random question to the console
-      console.log(result[0]);
-      res.send(result[0]);
-    })}
+    const {difficulty} = req.body;
+ // define the difficulty level
+
+
+// create the aggregation pipeline
+const pipeline = [
+  { $match: { difficulty: difficulty } },
+  { $sample: { size: 1 } }
+];
+
+// execute the pipeline
+let data = await questionModel.aggregate(pipeline
+).exec();
   
+res.send(data);
   }
+}
 
 module.exports = Question;

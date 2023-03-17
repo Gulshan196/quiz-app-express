@@ -7,6 +7,6 @@ router.post("/add", Question.addQuestions);
 
 router.get("/getall", Question.getQuestion);
 
-router.get('/getrand/:difficulty' , Question.getRandomQuestion);
+router.get('/getrand' , Question.getRandomQuestion);
 
 module.exports = router;
