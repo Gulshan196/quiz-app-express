@@ -14,6 +14,12 @@ const questionSchema = new mongoose.Schema({
         type:String,
         require:true
     }
+    ,
+    difficulty : {
+       type : Number , 
+       require : true 
+    }
+    
 })
 
 const questionModel = mongoose.model("questions",questionSchema);
