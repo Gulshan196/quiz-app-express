@@ -49,9 +49,9 @@ if (!email || !password){
 
 try{
     let userdata = await userModel.findOne({email:email});
-
+    console.log(userdata)
     if (userdata){
-        let isMatch = bcrypt.compare(password , userdata.password);
+        let isMatch = await bcrypt.compare(password , userdata.password);
         if (userdata.email == email && isMatch){
             const token = jwt.sign({email : email},
                 secret_key , {expiresIn: "4h"});
