@@ -49,7 +49,7 @@ if (!email || !password){
 
 try{
     let userdata = await userModel.findOne({email:email});
-    console.log(process.env.PORT,"port");
+
     if (userdata){
         let isMatch = bcrypt.compare(password , userdata.password);
         if (userdata.email == email && isMatch){

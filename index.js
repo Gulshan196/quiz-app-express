@@ -15,9 +15,9 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const router = require("./Route/question_route");
+const router = require("./Routes/question_route");
 
-const user_router = require("./Route/users_route");
+const user_router = require("./Routes/users_route");
 
 app.get("/", (req, res) => {
   res.send("hello");
