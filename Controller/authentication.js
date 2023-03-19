@@ -2,7 +2,6 @@ const userModel = require("../Model/user_schema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
-const secret_key = "secret-key";
 function Authentication() {
 
 }
@@ -54,7 +53,7 @@ try{
         let isMatch = await bcrypt.compare(password , userdata.password);
         if (userdata.email == email && isMatch){
             const token = jwt.sign({email : email},
-                secret_key , {expiresIn: "4h"});
+                process.env.SECRET_KEY , {expiresIn: "4h"});
 
                 res.send({token});
         }
